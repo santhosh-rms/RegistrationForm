@@ -4,12 +4,14 @@ import vuetify from '@/plugins/vuetify' // path to vuetify export
 import vueCountryRegionSelect from 'vue-country-region-select'
 import VueCountryCode from "vue-country-code-select";
 import VueTelInput from 'vue-tel-input'
+
 import 'vue-tel-input/dist/vue-tel-input.css'
 
 Vue.config.productionTip = false
 Vue.use(VueCountryCode);
 Vue.use(vueCountryRegionSelect)
 Vue.use(VueTelInput)
+
 
 new Vue({
   vuetify,

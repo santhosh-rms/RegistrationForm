@@ -1,16 +1,22 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <PersonalDetails msg="Add your personal details" head="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+    <PersonalDetails
+      msg="Add your personal details"
+      head="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    />
+    <!-- <CompanyDetails/> -->
   </div>
 </template>
 
 <script>
 import PersonalDetails from "./components/registration/PersonalDetails";
+//import CompanyDetails from "./components/registration/CompanyDetails";
 export default {
   name: "App",
   components: {
-    PersonalDetails,
+     PersonalDetails,
+    //CompanyDetails
   },
 };
 </script>
@@ -26,7 +32,6 @@ export default {
 }
 @font-face {
   font-family: "Lato";
-  src: local("Lato"),
-   url(./fonts/Lato/Lato-Bold.ttf) format("truetype");
+  src: local("Lato"), url(./fonts/Lato/Lato-Bold.ttf) format("truetype");
 }
 </style>

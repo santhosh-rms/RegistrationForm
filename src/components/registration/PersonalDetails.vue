@@ -2,7 +2,7 @@
   <div class="myTabClass">
     <h1 class="headTag">{{ msg }}</h1>
     <h4 class="headTag2">{{ head }}</h4>
-    <div id="content">
+    <div class="content">
       <div class="align">
         <div>
           <p class="titleTag">Full Name</p>
@@ -130,7 +130,6 @@ a {
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
-  line-height: 43px;
   text-align: center;
   border-width: 1px;
   color: #0a0909;
@@ -294,7 +293,7 @@ a {
   margin-left: 0ch;
   color: rgba(10, 9, 9, 0.6);
 }
-#content {
+.content {
   position: absolute;
   width: 508px;
   height: 585px;

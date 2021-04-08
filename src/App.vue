@@ -7,7 +7,6 @@
 
 <script>
 import PersonalDetails from "./components/registration/PersonalDetails";
-
 export default {
   name: "App",
   components: {

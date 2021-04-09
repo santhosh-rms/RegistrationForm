@@ -5,12 +5,15 @@ import vueCountryRegionSelect from 'vue-country-region-select'
 import VueCountryCode from "vue-country-code-select";
 import VueTelInput from 'vue-tel-input'
 
+import Vuelidate from 'vuelidate'
+import './styles/common.css';
 import 'vue-tel-input/dist/vue-tel-input.css'
 
 Vue.config.productionTip = false
 Vue.use(VueCountryCode);
 Vue.use(vueCountryRegionSelect)
 Vue.use(VueTelInput)
+Vue.use(Vuelidate)
 
 
 new Vue({

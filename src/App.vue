@@ -12,11 +12,12 @@
 <script>
 import PersonalDetails from "./components/registration/PersonalDetails";
 //import CompanyDetails from "./components/registration/CompanyDetails";
+
 export default {
   name: "App",
   components: {
-     PersonalDetails,
-    //CompanyDetails
+    PersonalDetails,
+    // CompanyDetails
   },
 };
 </script>
@@ -24,6 +25,7 @@ export default {
 <style>
 #app {
   text-align: center;
+  justify-content: center;
   position: absolute;
   width: 100%;
   height: 850px;

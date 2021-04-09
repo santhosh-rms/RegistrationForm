@@ -6,15 +6,31 @@
       <div class="align">
         <div>
           <p class="titleTag">Full Name</p>
-          <div>
-            <v-text-field  class="textInpuBox" label="sc" single-line outlined></v-text-field>
+          <v-text-field
+            class="pickerStyle"
+            single-line
+            outlined
+            dense
+            v-model.trim="$v.name.$model"
+            :class="{
+              'is-invalid': $v.name.$error,
+              'is-valid': !$v.name.$invalid,
+            }"
+          ></v-text-field>
+          <div class="errorStyle">
+            <p v-if="!$v.name.required">First name is required.</p>
+            <p v-if="!$v.name.minLength">
+              First name must have at least
+              {{ $v.name.$params.minLength.min }} letters.
+            </p>
           </div>
         </div>
+
         <div class="topPaddingStyles">
           <p class="titleTag">Gender</p>
           <div class="radio-toolbar">
             <input type="radio" id="radio1" name="radios" value="all" checked />
-            <label for="radio1">Male</label>
+            <label class="genderDesign" for="radio1">Male</label>
 
             <input type="radio" id="radio2" name="radios" value="false" />
             <label for="radio2">Female</label>
@@ -23,27 +39,20 @@
             <label for="radio3">Others</label>
           </div>
         </div>
-        <div class="textInpuBox topPaddingStyle">
+
+        <div class="textInpuBox topPaddingStyleConutry">
           <p class="titleTag">Country</p>
-          <!-- <v-select
-            v-model="select"
-            :items="countries"
-            label="Select"
-            item-text="name"
-            single-line
-            outlined
-          >
-            <template v-slot:item="slotProps">
-              <i :class="['mr-2', 'em', slotProps.item.flag]"></i>
-              {{ slotProps.item.name }}
-            </template>
-          </v-select> -->
           <country-select
             v-model="country"
             :country="country"
             topCountry="US"
             class="pickerStyle"
           />
+          <div>
+            <p class="errorStyleCountry" v-if="!$v.country.required">
+              Country is required.
+            </p>
+          </div>
         </div>
         <div class="textInpuBox topPaddingStyle">
           <p class="topPaddingStyl">State</p>
@@ -53,10 +62,20 @@
             :region="region"
             class="pickerStyle"
           />
+          <div>
+            <p class="errorStyleCountry" v-if="!$v.region.required">
+              State is required.
+            </p>
+          </div>
         </div>
         <p class="topPaddingStyl">Phone</p>
         <div class="textInpuBox">
-          <vue-tel-input v-model="value"></vue-tel-input>
+          <vue-tel-input class="pickerStyle"  v-model="Phone"></vue-tel-input>
+          <div>
+            <p class="errorStyleCountry" v-if="!$v.Phone.required">
+              Phone number is required.
+            </p>
+          </div>
         </div>
         <div class="textInpuBox">
           <button class="buttonStyle">Next</button>
@@ -70,12 +89,32 @@
   </div>
 </template>
 <script>
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
+
 export default {
   name: "PersonalDetails",
   data: () => ({
     country: "",
     region: "",
+    name: "",
+    Phone: 0,
   }),
+  validations: {
+    name: {
+      required,
+      minLength: minLength(4),
+      maxLength: maxLength(10),
+    },
+    country: {
+      required,
+    },
+    region: {
+      required,
+    },
+    Phone: {
+      required,
+    },
+  },
   methods: {
     onSelect({ name, iso2, dialCode }) {
       this.countrysss = name;
@@ -90,22 +129,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  color: #0a0909;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style scoped >
 .myTabClass {
   position: absolute;
   width: 1280px;
@@ -120,6 +144,12 @@ a {
   padding-left: 30px;
   margin-top: 30px;
 }
+.v-text-field .v-input__control .v-input__slot {
+  min-height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
 .headTag {
   position: absolute;
   width: 425px;
@@ -141,9 +171,11 @@ a {
   margin-bottom: 9;
 }
 .pickerStyle {
-  height: 40px;
+  height: 41px;
   width: 448px;
-  width: 448px;
+  color: #0a0909;
+  font-size: 13px;
+  font-weight: 700;
   background: #ffffff;
   border: 1px solid #cecece;
   box-sizing: border-box;
@@ -199,24 +231,20 @@ a {
 }
 .radio-toolbar input[type="radio"] {
   display: none;
+  top: 10px;
 }
 
 .radio-toolbar label {
   display: inline-block;
+  padding-top: 10px;
   background: #ffffff;
   width: 89px;
   text-align: center;
   height: 40px;
   margin-right: 15px;
-  align-self: center;
   background: #ffffff;
   border: 1px solid #ececec;
-  box-sizing: border-box;
   border-radius: 3px;
-  cursor: pointer;
-
-  font-family: Lato;
-  font-style: normal;
   font-weight: 600;
   font-size: 15px;
 }
@@ -242,6 +270,7 @@ a {
   font-size: 15px;
   color: rgba(10, 9, 9, 0.6);
 }
+
 .login {
   font-family: Lato;
   font-style: normal;
@@ -251,7 +280,21 @@ a {
   margin-left: 5px;
 }
 .topPaddingStyle {
-  margin-top: 70px;
+  margin-top: 75px;
+  height: 18px;
+  left: 0%;
+
+  right: 85.04%;
+  text-align: left;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  margin-left: 0ch;
+  color: rgba(10, 9, 9, 0.6);
+}
+.topPaddingStyleConutry {
+  margin-top: 67px;
   height: 18px;
   left: 0%;
 
@@ -281,7 +324,7 @@ a {
   color: rgba(10, 9, 9, 0.6);
 }
 .topPaddingStyles {
-  margin-top: 40px;
+  margin-top: 15px;
   height: 18px;
   left: 0%;
   right: 85.04%;

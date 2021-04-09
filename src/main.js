@@ -4,6 +4,7 @@ import vuetify from '@/plugins/vuetify' // path to vuetify export
 import vueCountryRegionSelect from 'vue-country-region-select'
 import VueCountryCode from "vue-country-code-select";
 import VueTelInput from 'vue-tel-input'
+import OtpInput from "@bachdgvn/vue-otp-input";
 
 import Vuelidate from 'vuelidate'
 import './styles/common.css';
@@ -14,6 +15,7 @@ Vue.use(VueCountryCode);
 Vue.use(vueCountryRegionSelect)
 Vue.use(VueTelInput)
 Vue.use(Vuelidate)
+Vue.component("v-otp-input", OtpInput);
 
 
 new Vue({

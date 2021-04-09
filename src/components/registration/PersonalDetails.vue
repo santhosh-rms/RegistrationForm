@@ -136,7 +136,7 @@ export default {
   height: 790px;
   left: 0px;
   right: 0px;
-  top: 60px;
+  top: 80px;
   background: #f1f1f1;
   mix-blend-mode: normal;
 }
@@ -341,7 +341,7 @@ export default {
   width: 508px;
   height: 585px;
   left: 386px;
-  top: 150px;
+  top: 120px;
   background: #ffffff;
   border-radius: 3px;
 }

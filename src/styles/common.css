@@ -1,0 +1,19 @@
+.errorStyle {
+    color: #ED5901;
+    margin-top: 0.5rem;
+    font-size: 12px;
+    text-align: start;
+}
+.errorStyleCountry {
+    color: #ED5901;
+    margin-top: 0.2rem;
+    text-align: start;
+    font-size: 12px;
+}
+.error-content {
+justify-content: flex-start;
+top: 20%;
+}
+.genderDesign {
+top: 10rem;
+}

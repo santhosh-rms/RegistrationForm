@@ -4,21 +4,15 @@ import vuetify from '@/plugins/vuetify' // path to vuetify export
 import vueCountryRegionSelect from 'vue-country-region-select'
 import VueCountryCode from "vue-country-code-select";
 import VueTelInput from 'vue-tel-input'
-<<<<<<< Updated upstream
-=======
 import Vuelidate from 'vuelidate'
 import './styles/common.css';
->>>>>>> Stashed changes
 import 'vue-tel-input/dist/vue-tel-input.css'
 
 Vue.config.productionTip = false
 Vue.use(VueCountryCode);
 Vue.use(vueCountryRegionSelect)
 Vue.use(VueTelInput)
-<<<<<<< Updated upstream
-=======
 Vue.use(Vuelidate)
->>>>>>> Stashed changes
 
 new Vue({
   vuetify,

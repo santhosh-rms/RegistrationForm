@@ -9,13 +9,20 @@
   },
   "dependencies": {
     "@bachdgvn/vue-otp-input": "^1.0.8",
+    "@nagoos/vue-image-picker": "^1.0.4",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
+    "vue-axios": "^3.2.4",
     "vue-country-code-select": "^1.6.7",
     "vue-country-region-select": "^2.0.14",
+    "vue-file-agent": "^1.7.3",
+    "vue-image-chooser": "^0.5.13",
+    "vue-router": "^3.5.1",
     "vue-tel-input": "^5.2.0",
     "vuelidate": "^0.7.6",
-    "vuetify": "^2.4.9"
+    "vuetify": "^2.4.9",
+    "vuetify-image-input": "^19.2.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

@@ -1,7 +1,21 @@
 <template>
-  <div class="myTabClass">
-    <h1 class="headTag">{{ msg }}</h1>
-    <h4 class="headTag2">{{ head }}</h4>
+  <form class="navBarstyle" @submit.prevent="submit">
+    <div class="toppaddingstyle">
+      <label class="navBarLabelCountPersonal">1</label>
+      <label class="navBarLabelActive">Personal Details</label>
+      <label class="navBarLabelCount">2</label>
+      <label class="navBarLabel">Company Details</label>
+      <label class="navBarLabelCount">3</label>
+      <label class="navBarLabel">Email Verification</label>
+    </div>
+    <div class="myTabClass">
+      <h1 class="headTag">Add your personal details</h1>
+      <h4 class="headTag2">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry.
+      </h4>
+    </div>
+
     <div class="content">
       <div class="align">
         <div>
@@ -12,13 +26,14 @@
             outlined
             dense
             v-model.trim="$v.name.$model"
-            :class="{
-              'is-invalid': $v.name.$error,
-              'is-valid': !$v.name.$invalid,
-            }"
           ></v-text-field>
           <div class="errorStyle">
-            <p v-if="!$v.name.required">First name is required.</p>
+            <span v-if="!$v.name.required && $v.name.$dirty" class="text-danger"
+              >Name is required!</span
+            >
+            <span v-if="!$v.name.alpha && $v.name.$dirty" class="text-danger"
+              >Name is required!</span
+            >
             <p v-if="!$v.name.minLength">
               First name must have at least
               {{ $v.name.$params.minLength.min }} letters.
@@ -49,9 +64,11 @@
             class="pickerStyle"
           />
           <div>
-            <p class="errorStyleCountry" v-if="!$v.country.required">
-              Country is required.
-            </p>
+            <span
+              v-if="!$v.country.required && $v.country.$dirty"
+              class="errorStyleCountry"
+              >Country is required.</span
+            >
           </div>
         </div>
         <div class="textInpuBox topPaddingStyle">
@@ -63,33 +80,62 @@
             class="pickerStyle"
           />
           <div>
-            <p class="errorStyleCountry" v-if="!$v.region.required">
-              State is required.
-            </p>
+            <span
+              v-if="!$v.region.required && $v.region.$dirty"
+              class="errorStyleCountry"
+              >State is required.</span
+            >
           </div>
         </div>
         <p class="topPaddingStyl">Phone</p>
         <div class="textInpuBox">
-          <vue-tel-input class="pickerStyle"  v-model="Phone"></vue-tel-input>
+          <vue-tel-input class="pickerStyle" v-model="Phone"></vue-tel-input>
           <div>
-            <p class="errorStyleCountry" v-if="!$v.Phone.required">
-              Phone number is required.
-            </p>
+            <p
+              v-if="!$v.Phone.required && $v.Phone.$dirty"
+              class="errorStyleCountry"
+              >Phone number is required.</p
+            >
+            <p
+              v-if="!$v.Phone.numeric && $v.Phone.$dirty"
+              class="errorStyleCountry"
+              >Type Proper Mobile Number.</p
+            >
           </div>
         </div>
         <div class="textInpuBox">
-          <button class="buttonStyle">Next</button>
+          <button
+          class="buttonStyle"
+            @click="submitForm"
+            type="submit"
+            :disabled="submitStatus === 'PENDING'"
+          >
+            Next!
+          </button>
         </div>
+        <p class="typo__p" v-if="submitStatus === 'OK'">
+          Thanks for your submission!
+        </p>
+        <p class="typo__p" v-if="submitStatus === 'ERROR'">
+          Please fill the form correctly.
+        </p>
+        <p class="typo__p" v-if="submitStatus === 'PENDING'">Sending...</p>
       </div>
       <div class="row loginContent">
         <p class="loginContentText">Already have an account?</p>
         <p class="login">Log in</p>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 <script>
-import { required, minLength, maxLength } from "vuelidate/lib/validators";
+import {
+  required,
+  minLength,
+  maxLength,
+  alpha,
+  numeric
+} from "vuelidate/lib/validators";
 
 export default {
   name: "PersonalDetails",
@@ -98,10 +144,12 @@ export default {
     region: "",
     name: "",
     Phone: 0,
+    submitStatus: null,
   }),
   validations: {
     name: {
       required,
+      alpha,
       minLength: minLength(4),
       maxLength: maxLength(10),
     },
@@ -113,12 +161,23 @@ export default {
     },
     Phone: {
       required,
+      numeric,
     },
   },
   methods: {
     onSelect({ name, iso2, dialCode }) {
       this.countrysss = name;
       console.log(name, iso2, dialCode);
+    },
+    forward() {
+      this.$router.push("/companydetails");
+    },
+    submitForm() {
+      this.$v.$touch();
+      if ((this.name !== "") & (this.country !== "") & (this.country !== "") & (this.region !== "") & (this.Phone !== "") ) {
+        console.log(`Name: ${this.name},`); 
+        this.$router.push("/companydetails");
+      }
     },
   },
   props: {
@@ -144,6 +203,7 @@ export default {
   padding-left: 30px;
   margin-top: 30px;
 }
+
 .v-text-field .v-input__control .v-input__slot {
   min-height: auto !important;
   display: flex !important;
@@ -307,6 +367,7 @@ export default {
   margin-left: 0ch;
   color: rgba(10, 9, 9, 0.6);
 }
+
 .topPaddingStyl {
   margin-top: 70px;
   margin-bottom: 10px;
@@ -339,9 +400,9 @@ export default {
 .content {
   position: absolute;
   width: 508px;
-  height: 585px;
+  height: 40rem;
   left: 386px;
-  top: 120px;
+  top: 13rem;
   background: #ffffff;
   border-radius: 3px;
 }

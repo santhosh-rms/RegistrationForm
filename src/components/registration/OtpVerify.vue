@@ -1,36 +1,51 @@
 <template>
-  <div class="myTabClass">
-    <h1 class="headTag">Enter your OTP</h1>
-    <h4 class="headTag2">
-      For your security, we need to verify your identity. We sent a 5-digit
-    </h4>
-    <h4 class="headTag3">code to name@domain.com. Please enter it below.</h4>
-    <!-- <h4 class="headTag3">code to name@domain.com. Please enter it below.</h4> -->
-    <div class="content">
-      <p class="titleTag">Enter your code</p>
-      <div style="display: flex; flex-direction: row; justify-content: center">
-        <v-otp-input
-          ref="otpInput"
-          input-classes="otp-input"
-          separator="-"
-          :num-inputs="4"
-          :should-auto-focus="true"
-          :is-input-num="true"
-          @on-change="handleOnChange"
-          @on-complete="handleOnComplete"
-        />
+  <div>
+    
+      <div class="navBarstyle">
+        <div class="toppaddingstyle">
+          <label class="navBarLabelCount">1</label>
+          <label class="navBarLabel">Personal Details</label>
+          <label class="navBarLabelCount">2</label>
+          <label class="navBarLabel">Company Details</label>
+          <label class="navBarLabelCountPersonal">3</label>
+          <label class="navBarLabelActive">Email Verification</label>
+        </div>
       </div>
-      <div>
-        <button class="buttonStyleBack">Back</button>
-        <button class="buttonStyle">Verify</button>
-      </div>
-      <hr class="hrStyle" />
-      <h1 class="headTag5">
-        Didn’t receive the email? Check your spam filter for an email
-      </h1>
-      <div class="row emailstyle">
-        <h1 class="headTag6">from</h1>
-        <h1 class="headTag6">name@domain.com</h1>
+      <div class="myTabClass">
+      <h1 class="headTag">Enter your OTP</h1>
+      <h4 class="headTag2">
+        For your security, we need to verify your identity. We sent a 5-digit
+      </h4>
+      <h4 class="headTag3">code to name@domain.com. Please enter it below.</h4>
+      <!-- <h4 class="headTag3">code to name@domain.com. Please enter it below.</h4> -->
+      <div class="content">
+        <p class="titleTag">Enter your code</p>
+        <div
+          style="display: flex; flex-direction: row; justify-content: center"
+        >
+          <v-otp-input
+            ref="otpInput"
+            input-classes="otp-input"
+            separator="-"
+            :num-inputs="4"
+            :should-auto-focus="true"
+            :is-input-num="true"
+            @on-change="handleOnChange"
+            @on-complete="handleOnComplete"
+          />
+        </div>
+        <div>
+          <button @click="back" class="buttonStyleBack">Back</button>
+          <button class="buttonStyle">Verify</button>
+        </div>
+        <hr class="hrStyle" />
+        <h1 class="headTag5">
+          Didn’t receive the email? Check your spam filter for an email
+        </h1>
+        <div class="row emailstyle">
+          <h1 class="headTag6">from</h1>
+          <h1 class="headTag6">name@domain.com</h1>
+        </div>
       </div>
     </div>
   </div>
@@ -63,6 +78,10 @@ export default {
     },
   },
   methods: {
+    back() {
+      // this.$router.go(-1);
+      this.$router.push("/companydetails");
+    },
     handleOnComplete(value) {
       console.log("OTP completed: ", value);
     },
@@ -155,7 +174,7 @@ export default {
   font-weight: normal;
   font-size: 13px;
   text-align: center;
-  color: #ED5901;
+  color: #ed5901;
 }
 .headTag2 {
   left: 395px;

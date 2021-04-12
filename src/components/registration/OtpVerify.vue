@@ -1,17 +1,16 @@
 <template>
   <div>
-    
-      <div class="navBarstyle">
-        <div class="toppaddingstyle">
-          <label class="navBarLabelCount">1</label>
-          <label class="navBarLabel">Personal Details</label>
-          <label class="navBarLabelCount">2</label>
-          <label class="navBarLabel">Company Details</label>
-          <label class="navBarLabelCountPersonal">3</label>
-          <label class="navBarLabelActive">Email Verification</label>
-        </div>
+    <div class="navBarstyle">
+      <div class="toppaddingstyle">
+        <label class="navBarLabelCount">1</label>
+        <label class="navBarLabel">Personal Details</label>
+        <label class="navBarLabelCount">2</label>
+        <label class="navBarLabel">Company Details</label>
+        <label class="navBarLabelCountPersonal">3</label>
+        <label class="navBarLabelActive">Email Verification</label>
       </div>
-      <div class="myTabClass">
+    </div>
+    <div class="myTabClass">
       <h1 class="headTag">Enter your OTP</h1>
       <h4 class="headTag2">
         For your security, we need to verify your identity. We sent a 5-digit
@@ -36,7 +35,7 @@
         </div>
         <div>
           <button @click="back" class="buttonStyleBack">Back</button>
-          <button class="buttonStyle">Verify</button>
+          <button  @click="postApi" class="buttonStyle">Verify</button>
         </div>
         <hr class="hrStyle" />
         <h1 class="headTag5">
@@ -52,6 +51,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
 export default {
   data: () => ({
@@ -61,6 +61,14 @@ export default {
     jobtitle: "",
     exp: "",
   }),
+
+  //   created() {
+  //   // Simple POST request with a JSON body using axios
+  //   const article = {   name: "morpheus",
+  //   job: "leader" };
+  //   axios.post("https://reqres.in/api/users", article)
+  //     .then(response => this.articleId = response.data.id);
+  // },
   validations: {
     companyname: {
       required,
@@ -78,6 +86,12 @@ export default {
     },
   },
   methods: {
+      postApi(){
+     const article = {   name: "morpheus",
+    job: "leader" };
+    axios.post("https://reqres.in/api/users", article)
+      .then(response => this.articleId = response.data.id);
+  },
     back() {
       // this.$router.go(-1);
       this.$router.push("/companydetails");

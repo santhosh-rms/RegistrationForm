@@ -14,6 +14,7 @@ import router from './router';
 import './styles/common.css';
 import 'vue-tel-input/dist/vue-tel-input.css'
 import VImageInput from 'vuetify-image-input';
+import Store from './store/store';
 
 Vue.config.productionTip = false
 Vue.use(VueCountryCode);
@@ -29,6 +30,7 @@ Vue.component("v-otp-input", OtpInput);
 
 new Vue({
   vuetify,
+  store: Store,
   router,
   render: h => h(App),
   data: {

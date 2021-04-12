@@ -22,7 +22,8 @@
     "vue-tel-input": "^5.2.0",
     "vuelidate": "^0.7.6",
     "vuetify": "^2.4.9",
-    "vuetify-image-input": "^19.2.2"
+    "vuetify-image-input": "^19.2.2",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

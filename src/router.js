@@ -10,6 +10,7 @@ export default new Router({
       path: '/',
       name: 'PersonalDetails',
       component: PersonalDetails,
+      
     },
     {
       path: '/companydetails',

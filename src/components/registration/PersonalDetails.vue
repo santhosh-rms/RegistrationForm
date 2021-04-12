@@ -24,8 +24,9 @@
             class="pickerStyle"
             single-line
             outlined
+            @input="onTextChange($companyname)"
             dense
-            v-model.trim="$v.name.$model"
+            :value="companyname"
           ></v-text-field>
           <div class="errorStyle">
             <span v-if="!$v.name.required && $v.name.$dirty" class="text-danger"
@@ -57,12 +58,14 @@
 
         <div class="textInpuBox topPaddingStyleConutry">
           <p class="titleTag">Country</p>
-          <country-select
-            v-model="country"
-            :country="country"
-            topCountry="US"
-            class="pickerStyle"
-          />
+          <div>
+            <country-select
+              v-model="country"
+              :country="country"
+              class="pickerTextStyle"
+              topCountry="US"
+            />
+          </div>
           <div>
             <span
               v-if="!$v.country.required && $v.country.$dirty"
@@ -73,12 +76,14 @@
         </div>
         <div class="textInpuBox topPaddingStyle">
           <p class="topPaddingStyl">State</p>
-          <region-select
-            v-model="region"
-            :country="country"
-            :region="region"
-            class="pickerStyle"
-          />
+          <div>
+            <region-select
+              v-model="region"
+              :country="country"
+              :region="region"
+              class="pickerTextStyle"
+            />
+          </div>
           <div>
             <span
               v-if="!$v.region.required && $v.region.$dirty"
@@ -94,18 +99,20 @@
             <p
               v-if="!$v.Phone.required && $v.Phone.$dirty"
               class="errorStyleCountry"
-              >Phone number is required.</p
             >
+              Phone number is required.
+            </p>
             <p
               v-if="!$v.Phone.numeric && $v.Phone.$dirty"
               class="errorStyleCountry"
-              >Type Proper Mobile Number.</p
             >
+              Type Proper Mobile Number.
+            </p>
           </div>
         </div>
         <div class="textInpuBox">
           <button
-          class="buttonStyle"
+            class="buttonStyle"
             @click="submitForm"
             type="submit"
             :disabled="submitStatus === 'PENDING'"
@@ -129,20 +136,20 @@
   </form>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
 import {
   required,
   minLength,
   maxLength,
   alpha,
-  numeric
+  numeric,
 } from "vuelidate/lib/validators";
-
 export default {
   name: "PersonalDetails",
   data: () => ({
     country: "",
     region: "",
-    name: "",
+    //name: "",
     Phone: 0,
     submitStatus: null,
   }),
@@ -164,7 +171,14 @@ export default {
       numeric,
     },
   },
+  computed: {
+    ...mapGetters(["companyname"]),
+  },
   methods: {
+    ...mapActions(["companyname"]),
+    onTextChange(event) {
+      this.companyname(event.target.value);
+    },
     onSelect({ name, iso2, dialCode }) {
       this.countrysss = name;
       console.log(name, iso2, dialCode);
@@ -174,12 +188,19 @@ export default {
     },
     submitForm() {
       this.$v.$touch();
-      if ((this.name !== "") & (this.country !== "") & (this.country !== "") & (this.region !== "") & (this.Phone !== "") ) {
-        console.log(`Name: ${this.name},`); 
+      if (
+        // (this.$store.state.name !== "") &
+        (this.country !== "") &
+        (this.country !== "") &
+        (this.region !== "") &
+        (this.Phone !== "")
+      ) {
+        console.log(`Name: ${this.name},`);
         this.$router.push("/companydetails");
       }
     },
   },
+
   props: {
     msg: String,
     head: String,
@@ -237,6 +258,29 @@ export default {
   font-size: 13px;
   font-weight: 700;
   background: #ffffff;
+  border: 1px solid #cecece;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+.pickerTextStyle {
+  font-size: 13px;
+  font-weight: 700;
+  height: 41px;
+  width: 448px;
+  display: flex;
+  background: #ffffff;
+  border: 1px solid #cecece;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding-top: 0.1rem;
+  padding-left: 0.5rem;
+  background: #ffffff;
+  background: #ffffff;
+}
+.pickerContentStyle {
+  height: 41px;
+  width: 448px;
+
   border: 1px solid #cecece;
   box-sizing: border-box;
   border-radius: 3px;

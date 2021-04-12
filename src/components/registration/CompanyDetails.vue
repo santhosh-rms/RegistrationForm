@@ -1,13 +1,20 @@
 <template>
   <form class="navBarstyle" @submit.prevent="submit">
-      <div class="toppaddingstyle">
-        <label class="navBarLabelCount">1</label>
-        <label class="navBarLabel">Personal Details</label>
-        <label class="navBarLabelCountPersonal">2</label>
-        <label class="navBarLabelActive">Company Details</label>
-        <label class="navBarLabelCount">3</label>
-        <label class="navBarLabel">Email Verification</label>
+    <div class="toppaddingstyle">
+      <label class="navBarLabelCount">1</label>
+      <label class="navBarLabel">Personal Details</label>
+      <label class="navBarLabelCountPersonal">2</label>
+      <label class="navBarLabelActive">Company Details</label>
+      <label class="navBarLabelCount">3</label>
+      <label class="navBarLabel">Email Verification</label>
     </div>
+    <!-- <img id="blah" alt="your image" width="100" height="100" />
+
+    <input
+      type="file"
+      onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+    /> -->
+
     <div class="myTabClass">
       <h1 class="headTag">Add your company details</h1>
       <h4 class="headTag2">
@@ -17,8 +24,23 @@
       <div class="content">
         <div class="paddingContent">
           <div class="row">
-            <div class="imageWrapper"></div>
-            <h4 class="imageContent">Upload your company logo</h4>
+            <img class="imageWrapper" id="blah" width="100" height="100" />
+            <div id="fakeDiv">
+              <input
+                type="file"
+                id="selectedFile"
+                hidden
+                onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+              />
+            </div>
+            <div class="topImageContent">
+              <span
+                onclick="document.getElementById('selectedFile').click();"
+                id="buttonImage"
+                class="imageContent"
+                >Upload your company logo</span
+              >
+            </div>
           </div>
           <p class="titleTag">Company Name</p>
           <v-text-field
@@ -30,10 +52,7 @@
             single-line
             outlined
             v-model.trim="$v.companyname.$model"
-            :class="{
-              'is-invalid': $v.companyname.$error,
-              'is-valid': !$v.companyname.$invalid,
-            }"
+          
           ></v-text-field>
           <div class="errorStyle">
             <span
@@ -93,20 +112,22 @@
             >
           </div>
           <p class="titleTag">Years of Experience</p>
-          <v-text-field
-            cols="92"
-            sm="55"
-            md="7"
-            class="textTag"
-            dense
-            single-line
-            v-model.trim="$v.exp.$model"
-            :class="{
-              'is-invalid': $v.exp.$error,
-              'is-valid': !$v.exp.$invalid,
-            }"
-            outlined
-          ></v-text-field>
+          <v-hover>
+            <v-text-field
+              cols="92"
+              sm="55"
+              md="7"
+              class="textTag"
+              dense
+              single-line
+              v-model.trim="$v.exp.$model"
+              :class="{
+                'is-invalid': $v.exp.$error,
+                'is-valid': !$v.exp.$invalid,
+              }"
+              outlined
+            ></v-text-field>
+          </v-hover>
           <div class="errorStyle">
             <span v-if="!$v.exp.required && $v.exp.$dirty" class="text-danger"
               >Years of Experience is required</span
@@ -127,7 +148,7 @@
 
           <div class="row loginContent form-check">
             <v-container class="px-0 row" fluid>
-              <p for="agree" >
+              <p for="agree">
                 <input
                   id="agree"
                   type="checkbox"
@@ -136,13 +157,19 @@
                   v-model="checked"
                 />
               </p>
-            <p class="loginContentText">I accept the</p>
-            <p class="login">Terms and Conditions</p>
+              <p class="loginContentText">I accept the</p>
+              <p class="login">Terms and Conditions</p>
             </v-container>
           </div>
           <div class="buttonPadding">
-            <button  @click="back" class="buttonStyleBack">Back</button>
-            <button :disabled="!checked" @click="submitForm"  v-bind:class="[!checked ? 'buttonStyleDisable' : 'buttonStyle']">Send Otp</button>
+            <button @click="back" class="buttonStyleBack">Back</button>
+            <button
+              :disabled="!checked"
+              @click="submitForm"
+              v-bind:class="[!checked ? 'buttonStyleDisable' : 'buttonStyle']"
+            >
+              Send Otp
+            </button>
           </div>
         </div>
       </div>
@@ -164,7 +191,7 @@ export default {
     checkbox: true,
     companyname: "",
     emailId: "",
-    checked : false,
+    checked: false,
     jobtitle: "",
     exp: "",
   }),
@@ -200,7 +227,9 @@ export default {
     },
     submitForm() {
       this.$v.$touch();
-       console.log(`Name: ${this.checked},${this.companyname},${this.emailId},${this.jobtitle},${this.exp}`);
+      console.log(
+        `Name: ${this.checked},${this.companyname},${this.emailId},${this.jobtitle},${this.exp}`
+      );
       if (
         (this.checked !== false) &
         (this.companyname !== "") &
@@ -208,7 +237,9 @@ export default {
         (this.jobtitle !== "") &
         (this.exp !== "")
       ) {
-        console.log(`Name: ${this.checked},${this.companyname},,${this.emailId},,${this.jobtitle},,${this.exp}`);
+        console.log(
+          `Name: ${this.checked},${this.companyname},,${this.emailId},,${this.jobtitle},,${this.exp}`
+        );
         this.$router.push("/otpverify");
       }
     },
@@ -219,21 +250,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.checkStyle{
+
+.checkStyle {
   height: 24px;
   width: 24px;
   background-color: brown;
- 
 }
-.buttonPadding{
+.buttonPadding {
   margin-top: 1.2rem;
 }
 .checkContent {
- padding-bottom: 3rem;
+  padding-bottom: 3rem;
 }
- input[type="checkbox"]{
-
-    outline-offset: -2px;
+.input:focus {
+  outline: unset;
+  border: 1px solid brown;
+}
+input[type="checkbox"] {
+  outline-offset: -2px;
 }
 
 .titleTag {
@@ -290,17 +324,21 @@ export default {
   margin-right: 0.1rem;
   background: #f4f6f7;
 }
+.topImageContent {
+  padding-top: 2rem;
+}
 .imageContent {
+  display: flex;
   left: 34.8%;
   margin-left: 15px;
-  text-align: center;
-  margin-top: 30px;
+  top: 30px;
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
   color: #ed5901;
 }
+
 .loginContent {
   margin-top: 1.7rem;
   margin-left: 0.2rem;
@@ -313,6 +351,9 @@ export default {
   margin-top: 0.2rem;
   margin-left: 0.6rem;
   color: rgba(10, 9, 9, 0.6);
+}
+.borderStyle {
+  border-color: brown;
 }
 .login {
   font-family: Lato;

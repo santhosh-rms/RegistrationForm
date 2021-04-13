@@ -35,7 +35,7 @@
         </div>
         <div>
           <button @click="back" class="buttonStyleBack">Back</button>
-          <button  @click="postApi" class="buttonStyle">Verify</button>
+          <button @click="postApi" class="buttonStyle">Verify</button>
         </div>
         <hr class="hrStyle" />
         <h1 class="headTag5">
@@ -86,12 +86,13 @@ export default {
     },
   },
   methods: {
-      postApi(){
-     const article = {   name: "morpheus",
-    job: "leader" };
-    axios.post("https://reqres.in/api/users", article)
-      .then(response => this.articleId = response.data.id);
-  },
+    postApi() {
+      const article = { name: "morpheus", job: "leader" };
+      axios
+        .post("https://reqres.in/api/users", article)
+        .then((response) => (this.articleId = response.data.id));
+          window.open("https://www.google.com/", "_blank");    
+    },
     back() {
       // this.$router.go(-1);
       this.$router.push("/companydetails");
@@ -158,146 +159,82 @@ export default {
 .checkboxStyle {
   margin-top: 0.2rem;
 }
-.imageWrapper {
-  height: 80px;
-  width: 80px;
-  background: #f8f9fa;
-  border-radius: 40px;
-  border: 1px dashed rgba(46, 75, 100, 0.1);
-}
-.flex {
-  flex-direction: row;
-}
+
 .headTag5 {
-  left: 395px;
-  margin-top: 30px;
+  left: 24.6rem;
+  margin-top: 1.87rem;
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
-  font-size: 13px;
-  /* identical to box height */
-
+  font-size: 0.8125rem;
   text-align: center;
-
   color: rgba(10, 9, 9, 0.6);
 }
 .headTag6 {
-  left: 395px;
+  left: 24.6rem;
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
-  font-size: 13px;
+   font-size: 0.8125rem;
   text-align: center;
   color: #ed5901;
 }
+
 .headTag2 {
-  left: 395px;
-  margin-top: 60px;
+  left: 24.6rem;
+  margin-top: 3.75rem;
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
-  /* identical to box height */
-
+  font-size: 0.8125rem;
   text-align: center;
-
   color: rgba(10, 9, 9, 0.8);
 }
+
 .headTag3 {
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
-  /* identical to box height */
-
+  font-size: 0.8125rem;
   text-align: center;
-
   color: rgba(10, 9, 9, 0.8);
 }
 .buttonStyle {
   color: #ffffff;
-  height: 40px;
-  width: 250px;
-  margin-left: 5px;
+  font-family: Lato;
+  height: 2.5rem;
+  width:15.6rem;
+  margin-left: 0.312rem;
   background: #ed5901;
-  border-radius: 3px;
+  border-radius: 0.312rem;
 }
 .buttonStyleBack {
   background-color: #ffffff;
-  height: 40px;
-  width: 97px;
-  border-radius: 3px;
-  margin-top: 25px;
+  height: 2.5rem;
+  font-family: Lato;
+  width:6.06rem;
+  border-radius: 0.187rem;
+  margin-top: 1.56rem;
   background: #f4f6f7;
 }
-.imageContent {
-  left: 34.8%;
-  margin-left: 15px;
-  text-align: center;
-  margin-top: 30px;
-  font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  color: #ed5901;
-}
-.loginContent {
-  margin-top: 40px;
-  margin-left: 0.2rem;
-}
-.loginContentText {
-  font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  margin-left: 0.4rem;
-  color: rgba(10, 9, 9, 0.6);
-}
-.login {
-  font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  color: #ed5901;
-  margin-left: 5px;
-}
-.paddingContent {
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-top: 30px;
-}
+
 .myTabClass {
   position: absolute;
-  width: 1280px;
-  height: 900px;
+  width: 78.1rem;;
+  height: 56.25rem;
   left: 0px;
   right: 0px;
-  top: 60px;
+  top:3.75rem;
   background: #f1f1f1;
   mix-blend-mode: normal;
 }
-.headTag {
-  position: absolute;
-  width: 425px;
-  height: 43px;
-  left: 438px;
-
-  font-family: Lato;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  text-align: center;
-  border-width: 1px;
-  color: #0a0909;
-}
-
 .content {
   position: absolute;
   width: 24rem;
   height: 20rem;
-  left: 440px;
-  top: 150px;
+  left: 27.5rem;
+  top: 9.37rem;
   background: #ffffff;
-  border-radius: 3px;
+  border-radius: 0.187rem;
 }
 </style>

@@ -1,8 +1,70 @@
+
+.myTabClass {
+  position: absolute;
+  width: 1280px;
+  height: 790px;
+  left: 0px;
+  right: 0px;
+  top: 80px;
+  background: #f1f1f1;
+  mix-blend-mode: normal;
+}
+.buttonStyle {
+  color: #ffffff;
+  height: 45px;
+  width: 450px;
+  font-family: Lato;
+  margin-top: 25px;
+  background: #ed5901;
+}
+.textInpuBox {
+  height: 40px;
+  width: 448px;
+  border-radius: 3px;
+  margin-bottom: 9;
+}
+.buttonStyleGlobal{
+  font-family: Lato;
+  bottom: 1rem;
+}
+.titleTag-C {
+  margin-bottom: 9px;
+  margin-top: 30px;
+  text-align: left;
+  font-family: Lato;
+  font-size: 15px;
+  margin-left: 0ch;
+  /* identical to box height */
+  color: rgba(10, 9, 9, 0.6);
+}
+.headTag {
+  position: absolute;
+  width: 425px;
+  height: 43px;
+  left: 438px;
+
+  font-family: Lato;
+  font-weight: bold;
+  font-size: 36px;
+  text-align: center;
+  border-width: 1px;
+  color: #0a0909;
+}
+.myTabClass-c {
+  position: absolute;
+  width: 1280px;
+  height: 900px;
+  left: 0px;
+  right: 0px;
+  top: 90px;
+  background: #f1f1f1;
+}
 .errorStyle {
     color: #ED5901;
     margin-top: 0.5rem;
     font-size: 12px;
     text-align: start;
+    font-family: Lato;
 }
 .errorStyleCountry {
     color: #ED5901;
@@ -27,7 +89,7 @@ top: 10rem;
     padding-bottom: 1.3rem;
   }
   .toppaddingstyle {
-    padding-top: 10px;
+    padding-top: 15px;
     display: flex;
     justify-content: center;
     align-items: center;

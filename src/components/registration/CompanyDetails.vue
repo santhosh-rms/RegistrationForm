@@ -15,7 +15,7 @@
       onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
     /> -->
 
-    <div class="myTabClass">
+    <div class="myTabClass-c">
       <h1 class="headTag">Add your company details</h1>
       <h4 class="headTag2">
         Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -42,7 +42,7 @@
               >
             </div>
           </div>
-          <p class="titleTag">Company Name</p>
+          <p class="titleTag-C">Company Name</p>
           <v-text-field
             cols="92"
             sm="55"
@@ -52,7 +52,6 @@
             single-line
             outlined
             v-model.trim="$v.companyname.$model"
-          
           ></v-text-field>
           <div class="errorStyle">
             <span
@@ -65,7 +64,7 @@
               {{ $v.companyname.$params.minLength.min }} letters.
             </p>
           </div>
-          <p class="titleTag">Email id</p>
+          <p class="titleTag-C">Email id</p>
           <v-text-field
             cols="92"
             sm="55"
@@ -89,7 +88,7 @@
               >Valid Email is required!</span
             >
           </div>
-          <p class="titleTag">Job Title</p>
+          <p class="titleTag-C">Job Title</p>
           <v-text-field
             cols="92"
             sm="55"
@@ -111,7 +110,7 @@
               >Job Title is required</span
             >
           </div>
-          <p class="titleTag">Years of Experience</p>
+          <p class="titleTag-C">Years of Experience</p>
           <v-hover>
             <v-text-field
               cols="92"
@@ -162,7 +161,9 @@
             </v-container>
           </div>
           <div class="buttonPadding">
-            <button @click="back" class="buttonStyleBack">Back</button>
+            <button @click="back" class="buttonStyleBack">
+              <label class="buttonStyleGlobal">Back</label>
+            </button>
             <button
               :disabled="!checked"
               @click="submitForm"
@@ -178,6 +179,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import {
   required,
   minLength,
@@ -213,7 +215,22 @@ export default {
       numeric,
     },
   },
+  computed: {
+    ...mapGetters([
+      "companynameGetters",
+      "emailIdGetters",
+      "jobtitleGetters",
+      "expGetters",
+    ]),
+  },
+  created: function () {
+    this.companyname = this.companynameGetters;
+    this.emailId = this.emailIdGetters;
+    this.jobtitle = this.jobtitleGetters;
+    this.exp = this.expGetters;
+  },
   methods: {
+    ...mapActions(["companyName", "emailID", "jobTitle", "experrience"]),
     onSelect({ name, iso2, dialCode }) {
       this.countrysss = name;
       console.log(name, iso2, dialCode);
@@ -227,6 +244,10 @@ export default {
     },
     submitForm() {
       this.$v.$touch();
+      this.companyName(this.companyname);
+      this.emailID(this.emailId);
+      this.jobTitle(this.jobtitle);
+      this.experrience(this.exp);
       console.log(
         `Name: ${this.checked},${this.companyname},${this.emailId},${this.jobtitle},${this.exp}`
       );
@@ -250,10 +271,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .checkStyle {
-  height: 24px;
-  width: 24px;
+  height: 1.5rem;
+  width: 1.5rem;
   background-color: brown;
 }
 .buttonPadding {
@@ -269,59 +289,60 @@ export default {
 input[type="checkbox"] {
   outline-offset: -2px;
 }
-
-.titleTag {
-  margin-bottom: 9px;
-  margin-top: 30px;
-  text-align: left;
-  font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  margin-left: 0ch;
-  /* identical to box height */
-  color: rgba(10, 9, 9, 0.6);
-}
 .textTag {
-  height: 40px;
-  width: 448;
+  height: 2.5rem;
+  width: 28rem;
 }
 .checkboxStyle {
   margin-top: 0.2rem;
 }
 .imageWrapper {
-  height: 80px;
-  width: 80px;
+  height: 5rem;
+  width: 5rem;
   background: #f8f9fa;
-  border-radius: 40px;
+  border-radius: 2.5rem;
   border: 1px dashed rgba(46, 75, 100, 0.1);
 }
+
 .flex {
   flex-direction: row;
 }
+
 .buttonStyle {
   color: #ffffff;
-  height: 40px;
-  width: 333px;
-  margin-left: 5px;
+  height: 2.5rem;
+  font-family: Lato;
+  width: 20.8rem;
+  padding-bottom: 0.321rem;
+  margin-top: 1.56rem;
+  margin-left: 0.1rem;
   background: #ed5901;
-  border-radius: 3px;
+  border-radius: 0.18rem;
 }
+
 .buttonStyleDisable {
   color: #ffffff;
-  height: 40px;
-  width: 333px;
-  margin-left: 5px;
+  height: 2.5rem;
+  margin-top: 1.56rem;
+  font-family: Lato;
+  width: 20.8rem;
+  padding-bottom: 0.321rem;
+  margin-left: 0.1rem;
   background: #f2a97c;
-  border-radius: 3px;
+  border-radius: 0.18rem;
 }
+
 .buttonStyleBack {
   background-color: #ffffff;
-  height: 40px;
-  width: 105px;
-  border-radius: 3px;
-  margin-top: 25px;
-  margin-right: 0.1rem;
+  height: 2.5rem;
+  width: 6.5rem;
+  text-align: center;
+  border-radius: 0.18rem;
+  /* margin-top: 1.56rem; */
+  /* bottom: 2rem; */
+  font-family: Lato;
+  margin-right: 0.15rem;
+  padding-bottom: 0.321rem;
   background: #f4f6f7;
 }
 .topImageContent {
@@ -330,8 +351,8 @@ input[type="checkbox"] {
 .imageContent {
   display: flex;
   left: 34.8%;
-  margin-left: 15px;
-  top: 30px;
+  margin-left: 1rem;
+  top: 1.87rem;
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
@@ -347,7 +368,7 @@ input[type="checkbox"] {
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 1rem;
   margin-top: 0.2rem;
   margin-left: 0.6rem;
   color: rgba(10, 9, 9, 0.6);
@@ -360,59 +381,34 @@ input[type="checkbox"] {
   font-style: normal;
   margin-top: 0.2rem;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 1rem;
   color: #ed5901;
   margin-left: 5px;
 }
 .paddingContent {
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-top: 30px;
+  margin-left: 1.87rem;
+  margin-right: 1.87rem;
+  margin-top: 1.87rem;
 }
-.myTabClass {
-  position: absolute;
-  width: 1280px;
-  height: 900px;
-  left: 0px;
-  right: 0px;
-  top: 90px;
-  background: #f1f1f1;
-  mix-blend-mode: normal;
-}
-.headTag {
-  position: absolute;
-  width: 425px;
-  height: 43px;
-  left: 438px;
 
-  font-family: Lato;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  text-align: center;
-  border-width: 1px;
-  color: #0a0909;
-}
 .headTag2 {
-  left: 395px;
-  margin-top: 60px;
+  left: 24.6rem;
+  margin-top: 3.75rem;
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
-  /* identical to box height */
-
+  font-size: 1rem;
   text-align: center;
-
   color: rgba(10, 9, 9, 0.8);
 }
+
 .content {
   position: absolute;
-  width: 508px;
+  width: 31.75rem;
   height: 79%;
-  left: 386px;
-  top: 120px;
+  left: 24.125rem;
+  top: 7.5rem;
   background: #ffffff;
-  border-radius: 3px;
+  border-radius: 0.187rem;
 }
 </style>

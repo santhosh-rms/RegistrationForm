@@ -15,7 +15,6 @@
         industry.
       </h4>
     </div>
-
     <div class="content">
       <div class="align">
         <div>
@@ -24,9 +23,8 @@
             class="pickerStyle"
             single-line
             outlined
-            @input="onTextChange($companyname)"
             dense
-            :value="companyname"
+            v-model.trim="$v.name.$model"
           ></v-text-field>
           <div class="errorStyle">
             <span v-if="!$v.name.required && $v.name.$dirty" class="text-danger"
@@ -41,7 +39,6 @@
             </p>
           </div>
         </div>
-
         <div class="topPaddingStyles">
           <p class="titleTag">Gender</p>
           <div class="radio-toolbar">
@@ -103,7 +100,7 @@
               Phone number is required.
             </p>
             <p
-              v-if="!$v.Phone.numeric && $v.Phone.$dirty"
+              v-if="!$v.Phone.numeric && $v.Phone.$dirty && $v.Phone.maxLength"
               class="errorStyleCountry"
             >
               Type Proper Mobile Number.
@@ -149,7 +146,7 @@ export default {
   data: () => ({
     country: "",
     region: "",
-    //name: "",
+    name: "",
     Phone: 0,
     submitStatus: null,
   }),
@@ -169,13 +166,30 @@ export default {
     Phone: {
       required,
       numeric,
+      maxLength: maxLength(10),
     },
   },
   computed: {
-    ...mapGetters(["companyname"]),
+    ...mapGetters([
+      "profilenameGetters",
+      "profileCountryGetters",
+      "profileRegionGetters",
+      "profilePhoneGetters",
+    ]),
+  },
+  created: function () {
+    this.name = this.profilenameGetters;
+    this.country = this.profileCountryGetters;
+    this.region = this.profileRegionGetters;
+    this.Phone = this.profilePhoneGetters;
   },
   methods: {
-    ...mapActions(["companyname"]),
+    ...mapActions([
+      "profileCountry",
+      "profileName",
+      "profileRegion",
+      "profilePhone",
+    ]),
     onTextChange(event) {
       this.companyname(event.target.value);
     },
@@ -188,14 +202,20 @@ export default {
     },
     submitForm() {
       this.$v.$touch();
+      // this.companyname= this.name;
+      this.profileName(this.name);
+      this.profileCountry(this.country);
+      this.profileRegion(this.region);
+      this.profilePhone(this.Phone);
+      // consol.log(this.$store.state.name)
       if (
-        // (this.$store.state.name !== "") &
+        (this.name !== "") &
         (this.country !== "") &
         (this.country !== "") &
         (this.region !== "") &
         (this.Phone !== "")
       ) {
-        console.log(`Name: ${this.name},`);
+        console.log(`Name: ${this.companyname},`);
         this.$router.push("/companydetails");
       }
     },
@@ -210,19 +230,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
-.myTabClass {
-  position: absolute;
-  width: 1280px;
-  height: 790px;
-  left: 0px;
-  right: 0px;
-  top: 80px;
-  background: #f1f1f1;
-  mix-blend-mode: normal;
-}
 .align {
-  padding-left: 30px;
-  margin-top: 30px;
+  padding-left: 1.875rem;
+  margin-top: 1.875rem;
 }
 
 .v-text-field .v-input__control .v-input__slot {
@@ -231,130 +241,75 @@ export default {
   align-items: center !important;
 }
 
-.headTag {
-  position: absolute;
-  width: 425px;
-  height: 43px;
-  left: 438px;
-
-  font-family: Lato;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  text-align: center;
-  border-width: 1px;
-  color: #0a0909;
-}
-.textInpuBox {
-  height: 40px;
-  width: 448px;
-  border-radius: 3px;
-  margin-bottom: 9;
-}
 .pickerStyle {
-  height: 41px;
-  width: 448px;
+  height: 2.5rem;
+  width: 28rem;
+  font-family: Lato;
   color: #0a0909;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 0.8125rem;
   background: #ffffff;
   border: 1px solid #cecece;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: 0.187rem;
 }
+
 .pickerTextStyle {
-  font-size: 13px;
-  font-weight: 700;
-  height: 41px;
-  width: 448px;
+  font-size: 0.812rem;
+  height: 2.5rem;
+  width: 28rem;
   display: flex;
   background: #ffffff;
   border: 1px solid #cecece;
-  box-sizing: border-box;
   border-radius: 3px;
   padding-top: 0.1rem;
+  font-family: Lato;
   padding-left: 0.5rem;
   background: #ffffff;
-  background: #ffffff;
 }
-.pickerContentStyle {
-  height: 41px;
-  width: 448px;
 
-  border: 1px solid #cecece;
-  box-sizing: border-box;
-  border-radius: 3px;
-}
-#input {
-  padding: 0px 5px;
-  margin-bottom: 30px;
-  border: 1px solid #cecece;
-  background-color: #ffffff;
-  border-radius: 3px;
-  font-size: 15px;
-  float: left;
-  width: 450px;
-  height: 40px;
-}
-.buttonStyle {
-  color: #ffffff;
-  height: 45px;
-  width: 450px;
-  margin-top: 25px;
-  background: #ed5901;
-}
 .headTag2 {
-  left: 395px;
-  margin-top: 60px;
+  left: 24.6rem;
+  margin-top: 3.75rem;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  /* identical to box height */
-
+  font-size: 1rem;
   text-align: center;
-
   color: rgba(10, 9, 9, 0.8);
 }
 
 .titleTag {
-  height: 18px;
+  height: 1.125rem;
   left: 0%;
-  margin-bottom: 9px;
+  margin-bottom: 0.56rem;
   right: 85.04%;
-  top: calc(50% - 18px / 2 - 24.5px);
+  top: calc(50% - 1.125rem / 2 - 1.531rem);
   text-align: left;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
+  font-size: 0.93rem;
   margin-left: 0ch;
-  line-height: 18px;
-  /* identical to box height */
+  line-height: 1.125rem;
   color: rgba(10, 9, 9, 0.6);
 }
 .radio-toolbar input[type="radio"] {
   display: none;
-  top: 10px;
+  top: 0.625rem;
 }
 
 .radio-toolbar label {
   display: inline-block;
-  padding-top: 10px;
+  padding-top: 0.625rem;
   background: #ffffff;
-  width: 89px;
+  width: 5.56rem;
   text-align: center;
-  height: 40px;
-  margin-right: 15px;
+  height: 2.5rem;
+  margin-right: 0.93rem;
   background: #ffffff;
-  border: 1px solid #ececec;
-  border-radius: 3px;
-  font-weight: 600;
-  font-size: 15px;
+  border: 0.062rem solid #ececec;
+  border-radius: 0.187rem;
+  font-size: 0.93rem;
 }
 
 #radio-toolbar-button {
-  top: 20px;
+  top: 1.25rem;
 }
 
 .radio-toolbar input[type="radio"]:checked + label {
@@ -363,91 +318,79 @@ export default {
 }
 
 .loginContent {
-  margin-top: 45px;
+  margin-top: 2.8rem;
   text-align: center;
   justify-content: center;
 }
 .loginContentText {
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
+  font-size: 0.93rem;
   color: rgba(10, 9, 9, 0.6);
 }
 
 .login {
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
   font-size: 15px;
   color: #ed5901;
   margin-left: 5px;
 }
-.topPaddingStyle {
-  margin-top: 75px;
-  height: 18px;
-  left: 0%;
 
+.topPaddingStyle {
+  margin-top: 4.87rem;
+  height: 0.93rem;
+  left: 0%;
   right: 85.04%;
   text-align: left;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
+  font-size: 0.93rem;
   margin-left: 0ch;
   color: rgba(10, 9, 9, 0.6);
 }
-.topPaddingStyleConutry {
-  margin-top: 67px;
-  height: 18px;
-  left: 0%;
 
+.topPaddingStyleConutry {
+  margin-top: 4.18rem;
+  height: 1.12rem;
+  left: 0%;
   right: 85.04%;
   text-align: left;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
+  font-size: 0.93rem;
   margin-left: 0ch;
   color: rgba(10, 9, 9, 0.6);
 }
 
 .topPaddingStyl {
-  margin-top: 70px;
-  margin-bottom: 10px;
-  height: 18px;
+  margin-top: 4.37rem;
+  margin-bottom: 0.625rem;
+  height: 1.12rem;
   left: 0%;
   right: 85.04%;
   text-align: left;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
+  font-size: 0.93rem;
   margin-left: 0ch;
-  line-height: 18px;
+  line-height: 0.93rem;
   /* identical to box height */
   color: rgba(10, 9, 9, 0.6);
 }
 .topPaddingStyles {
-  margin-top: 15px;
-  height: 18px;
+  margin-top: 0.93rem;
+  height: 1.12rem;
   left: 0%;
   right: 85.04%;
   text-align: left;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
+  font-size: 0.93rem;
   margin-left: 0ch;
   color: rgba(10, 9, 9, 0.6);
 }
 .content {
   position: absolute;
-  width: 508px;
-  height: 40rem;
-  left: 386px;
+  width: 31.75rem;
+  height: 37rem;
+  left: 24.12rem;
   top: 13rem;
   background: #ffffff;
-  border-radius: 3px;
+  border-radius: 0.187rem;
 }
 </style>

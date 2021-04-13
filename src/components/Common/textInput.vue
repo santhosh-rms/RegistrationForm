@@ -1,48 +1,17 @@
 <template>
-  <div>
-    <v-text-field
-      class="pickerStyle"
-      single-line
-      outlined
-      dense
-      v-model.trim="$v.companyName.$model"
-      :class="{
-        'is-invalid': $v.companyName.$error,
-        'is-valid': !$v.companyName.$invalid,
-      }"
-    ></v-text-field>
-    <div class="errorStyle">
-      <p v-if="!$v.companyName.required">First name is required.</p>
-      <p v-if="!$v.companyName.minLength">
-        First name must have at least
-        {{ $v.companyName.$params.minLength.min }} letters.
-      </p>
-    </div>
-  </div>
+  <v-text-field
+    class="pickerStyle"
+    single-line
+    outlined
+    dense
+    v-model.trim="pname"
+  ></v-text-field>
 </template>
-
 <script>
-import { required, minLength, maxLength } from "vuelidate/lib/validators";
 export default {
-    name: 'TextInput',
-    props: {
-    companyName: String
-  },
-  validations: {
-    name: {
-      required,
-      minLength: minLength(4),
-      maxLength: maxLength(10),
-    },
-    country: {
-      required,
-    },
-    region: {
-      required,
-    },
-    Phone: {
-      required,
-    },
+  name: "TextInput",
+  props: {
+    pname: String,
   },
 };
 </script>

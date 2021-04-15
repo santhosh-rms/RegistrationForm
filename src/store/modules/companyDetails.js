@@ -7,18 +7,10 @@ export default {
     exp: '',
   },
   getters: {
-    companynameGetters: (state) => {
-      return state.companyname;
-    },
-    emailIdGetters: (state) => {
-      return state.emailId;
-    },
-    jobtitleGetters: (state) => {
-      return state.jobtitle;
-    },
-    expGetters: (state) => {
-      return state.exp;
-    },
+    companynameGetters: ({ companyname }) => companyname,
+    emailIdGetters: ({ emailId }) => emailId,
+    jobtitleGetters: ({ jobtitle }) => jobtitle,
+    expGetters: ({ exp }) => exp,
   },
   mutations: {
     companynameMutation: (state, companyname) => {

@@ -6,26 +6,14 @@ export default {
     region: '',
     Phone: 0,
   },
+  
   getters: {
-    profilenameGetters:(state)=> {
-      return state.name;
-    },
-    profileCountryGetters:(state)=> {
-      return state.country;
-    },
-    profileRegionGetters:(state)=> {
-      return state.region;
-    },
-    profilePhoneGetters:(state)=> {
-      return state.Phone;
-    },
+    profilenameGetters: ({ name }) => name,
+    profileCountryGetters: ({ country }) => country,
+    profileRegionGetters: ({ region }) => region,
+    profilePhoneGetters: ({ Phone }) => Phone,
   },
-  // getters: {
-  //   getSelectedReleaseOption: ({ releaseOption }) => releaseOption,
-  // },
-  // changeReleaseSkip: ({ commit }, skip) => {
-  //   commit('setReleaseSkip', skip);
-  // },
+
   mutations: {
     profilenameMutation: (state, name) => {
       state.name = name;

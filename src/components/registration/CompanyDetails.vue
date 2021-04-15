@@ -292,6 +292,7 @@ input[type="checkbox"] {
 .textTag {
   height: 2.5rem;
   width: 28rem;
+  font-family: Lato;
 }
 .checkboxStyle {
   margin-top: 0.2rem;

@@ -13,7 +13,7 @@ export default new Router({
       
     },
     {
-      path: '/companydetails',
+      path: '/companydetails',query:{name:'sai'},
       name: 'CompanyDetails',
       component: () => import('../src/components/registration/CompanyDetails'),
     },

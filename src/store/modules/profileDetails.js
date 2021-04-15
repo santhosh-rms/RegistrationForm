@@ -1,45 +1,32 @@
 export default {
   strict: true, // No mutations outside of the store handlers
   state: {
-    name: '',
-    country: '',
-    region: '',
-    Phone: 0,
+    personalDetails: { name: '', country: '', region: '', Phone: '' },
+    HeadingTitle: 'Add your personal details',
   },
-  
+
   getters: {
-    profilenameGetters: ({ name }) => name,
-    profileCountryGetters: ({ country }) => country,
-    profileRegionGetters: ({ region }) => region,
-    profilePhoneGetters: ({ Phone }) => Phone,
+    personalDetailsGetters: ({ personalDetails }) => personalDetails,
+    personalDetailsHeading: ({ HeadingTitle }) => HeadingTitle,
   },
 
   mutations: {
-    profilenameMutation: (state, name) => {
-      state.name = name;
+    personalDetailsMutation: (state, personalDetails) => {
+      state.personalDetails = personalDetails;
     },
-    profilecountryMutation: (state, country) => {
-      state.country = country;
-    },
-    profileregionMutation: (state, region) => {
-      state.region = region;
-    },
-    profilePhoneMutation: (state, Phone) => {
-      state.Phone = Phone;
+    personalDetailsHeadingTitleMutation: (state, HeadingTitle) => {
+      state.HeadingTitle = HeadingTitle;
     },
   },
   actions: {
-    profileName: ({ commit }, name) => {
-      commit('profilenameMutation', name);
+    personalDetailsAction: ({ commit }, personalDetails) => {
+      commit('personalDetailsMutation', personalDetails);
     },
-    profileCountry: ({ commit }, country) => {
-      commit('profilecountryMutation', country);
+    actionOne({ commit }, HeadingTitle) {
+      this.dispatch('actionTwo', HeadingTitle); // moduleName/action
     },
-    profileRegion: ({ commit }, region) => {
-      commit('profileregionMutation', region);
-    },
-    profilePhone: ({ commit }, Phone) => {
-      commit('profilePhoneMutation', Phone);
+    actionTwo({ commit }, HeadingTitle) {
+      commit('personalDetailsHeadingTitleMutation', HeadingTitle);
     },
   },
 };

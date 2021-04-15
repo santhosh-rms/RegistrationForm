@@ -2,14 +2,14 @@
   <form class="navBarstyle" @submit.prevent="submit">
     <div class="toppaddingstyle flexContent">
       <label class="navBarLabelCountPersonal">1</label>
-      <label class="navBarLabelActive">Personal Details</label>
+      <label class="navBarLabelActive">Personal Details </label>
       <label class="navBarLabelCount">2</label>
       <label class="navBarLabel">Company Details</label>
       <label class="navBarLabelCount">3</label>
       <label class="navBarLabel">Email Verification</label>
     </div>
     <div class="myTabClass">
-      <h1 class="headTag">Add your personal details</h1>
+      <h1 class="headTag">{{HeadingTitle}}</h1>
       <h4 class="headTag2">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry.
@@ -92,17 +92,14 @@
         <p class="topPaddingStyl">Phone</p>
         <div class="textInpuBox">
           <vue-tel-input class="pickerStyle" v-model="Phone"></vue-tel-input>
-          <div  class="errorStyle">
+          <div class="errorStyle">
             <span
               v-if="!$v.Phone.required && $v.Phone.$dirty"
-               class="text-danger"
+              class="text-danger"
             >
               Phone number is required.
             </span>
-            <span
-              v-if="! $v.Phone.minLength"
-              class="text-danger"
-            >
+            <span v-if="!$v.Phone.minLength" class="text-danger">
               Type Valid Mobile Number.
               {{ $v.Phone.$params.minLength.min }} letters.
             </span>
@@ -110,21 +107,20 @@
         </div>
         <div class="textInpuBox">
           <v-btn
-           class="buttonStyle"
+            class="buttonStyle"
             @click="submitForm"
             type="submit"
-            color=#ed5901
+            color="#ed5901"
             :disabled="submitStatus === 'PENDING'"
           >
-            
-            <label  class="buttonLabelStyle">Next!</label>
+            <label class="buttonLabelStyle">Next!</label>
           </v-btn>
         </div>
         <p class="typo__p" v-if="submitStatus === 'OK'">
           Thanks for your submission!
         </p>
         <p class="typo__p" v-if="submitStatus === 'ERROR'">
-          Please fill the form correctly. 
+          Please fill the form correctly.
         </p>
         <p class="typo__p" v-if="submitStatus === 'PENDING'">Sending...</p>
       </div>
@@ -150,6 +146,7 @@ export default {
     country: "",
     region: "",
     name: "",
+    HeadingTitle: "",
     Phone: 0,
     submitStatus: null,
   }),
@@ -173,24 +170,21 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "profilenameGetters",
-      "profileCountryGetters",
-      "profileRegionGetters",
-      "profilePhoneGetters",
+      "personalDetailsGetters",
+      "personalDetailsHeading"
     ]),
   },
   created: function () {
-    this.name = this.profilenameGetters;
-    this.country = this.profileCountryGetters;
-    this.region = this.profileRegionGetters;
-    this.Phone = this.profilePhoneGetters;
+    this.name = this.personalDetailsGetters.name;
+    this.country = this.personalDetailsGetters.country;
+    this.region = this.personalDetailsGetters.region;
+    this.Phone = this.personalDetailsGetters.Phone;
+    this.HeadingTitle = this.personalDetailsHeading
   },
   methods: {
     ...mapActions([
-      "profileCountry",
-      "profileName",
-      "profileRegion",
-      "profilePhone",
+      "personalDetailsAction",
+      "actionOne"
     ]),
     onTextChange(event) {
       this.companyname(event.target.value);
@@ -202,14 +196,18 @@ export default {
     forward() {
       this.$router.push("/companydetails");
     },
+
     submitForm() {
       this.$v.$touch();
-      // this.companyname= this.name;
-      this.profileName(this.name);
-      this.profileCountry(this.country);
-      this.profileRegion(this.region);
-      this.profilePhone(this.Phone);
-      // consol.log(this.$store.state.name)
+      const userData = {
+        name: this.name,
+        country:this.country,
+        region:this.region,
+        Phone:this.Phone,
+      };
+      const dataHead ="Add your personal details!"
+      this.actionOne(dataHead);
+      this.personalDetailsAction(userData);
       if (
         (this.name !== "") &
         (this.country !== "") &
@@ -218,7 +216,8 @@ export default {
         (this.Phone !== "")
       ) {
         console.log(`Name: ${this.companyname},`);
-        this.$router.push("/companydetails");
+        // this.$router.push("/companydetails");
+        this.$router.push({path:'/companydetails',query:{name:'santhosh'}});
       }
     },
   },

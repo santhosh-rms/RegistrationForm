@@ -7,45 +7,51 @@ export default {
     Phone: 0,
   },
   getters: {
-    profilenameGetters(state) {
+    profilenameGetters:(state)=> {
       return state.name;
     },
-    profileCountryGetters(state) {
+    profileCountryGetters:(state)=> {
       return state.country;
     },
-    profileRegionGetters(state) {
+    profileRegionGetters:(state)=> {
       return state.region;
     },
-    profilePhoneGetters(state) {
+    profilePhoneGetters:(state)=> {
       return state.Phone;
     },
   },
+  // getters: {
+  //   getSelectedReleaseOption: ({ releaseOption }) => releaseOption,
+  // },
+  // changeReleaseSkip: ({ commit }, skip) => {
+  //   commit('setReleaseSkip', skip);
+  // },
   mutations: {
-    profilenameMutation(state, name) {
+    profilenameMutation: (state, name) => {
       state.name = name;
     },
-    profilecountryMutation(state, country) {
+    profilecountryMutation: (state, country) => {
       state.country = country;
     },
-    profileregionMutation(state, region) {
+    profileregionMutation: (state, region) => {
       state.region = region;
     },
-    profilePhoneMutation(state, Phone) {
+    profilePhoneMutation: (state, Phone) => {
       state.Phone = Phone;
     },
   },
   actions: {
-    profileName(context, name) {
-      context.commit('profilenameMutation', name);
+    profileName: ({ commit }, name) => {
+      commit('profilenameMutation', name);
     },
-    profileCountry(context, country) {
-      context.commit('profilecountryMutation', country);
+    profileCountry: ({ commit }, country) => {
+      commit('profilecountryMutation', country);
     },
-    profileRegion(context, region) {
-      context.commit('profileregionMutation', region);
+    profileRegion: ({ commit }, region) => {
+      commit('profileregionMutation', region);
     },
-    profilePhone(context, Phone) {
-      context.commit('profilePhoneMutation', Phone);
+    profilePhone: ({ commit }, Phone) => {
+      commit('profilePhoneMutation', Phone);
     },
   },
 };

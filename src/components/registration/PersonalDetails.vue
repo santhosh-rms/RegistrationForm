@@ -1,6 +1,6 @@
 <template>
   <form class="navBarstyle" @submit.prevent="submit">
-    <div class="toppaddingstyle">
+    <div class="toppaddingstyle flexContent">
       <label class="navBarLabelCountPersonal">1</label>
       <label class="navBarLabelActive">Personal Details</label>
       <label class="navBarLabelCount">2</label>
@@ -71,7 +71,7 @@
             >
           </div>
         </div>
-        <div class="textInpuBox topPaddingStyle">
+        <div class="textInpuBox topPaddingStyleConutry">
           <p class="topPaddingStyl">State</p>
           <div>
             <region-select
@@ -92,36 +92,39 @@
         <p class="topPaddingStyl">Phone</p>
         <div class="textInpuBox">
           <vue-tel-input class="pickerStyle" v-model="Phone"></vue-tel-input>
-          <div>
-            <p
+          <div  class="errorStyle">
+            <span
               v-if="!$v.Phone.required && $v.Phone.$dirty"
-              class="errorStyleCountry"
+               class="text-danger"
             >
               Phone number is required.
-            </p>
-            <p
-              v-if="!$v.Phone.numeric && $v.Phone.$dirty && $v.Phone.maxLength"
-              class="errorStyleCountry"
+            </span>
+            <span
+              v-if="! $v.Phone.minLength"
+              class="text-danger"
             >
-              Type Proper Mobile Number.
-            </p>
+              Type Valid Mobile Number.
+              {{ $v.Phone.$params.minLength.min }} letters.
+            </span>
           </div>
         </div>
         <div class="textInpuBox">
-          <button
-            class="buttonStyle"
+          <v-btn
+           class="buttonStyle"
             @click="submitForm"
             type="submit"
+            color=#ed5901
             :disabled="submitStatus === 'PENDING'"
           >
-            Next!
-          </button>
+            
+            <label  class="buttonLabelStyle">Next!</label>
+          </v-btn>
         </div>
         <p class="typo__p" v-if="submitStatus === 'OK'">
           Thanks for your submission!
         </p>
         <p class="typo__p" v-if="submitStatus === 'ERROR'">
-          Please fill the form correctly.
+          Please fill the form correctly. 
         </p>
         <p class="typo__p" v-if="submitStatus === 'PENDING'">Sending...</p>
       </div>
@@ -155,7 +158,6 @@ export default {
       required,
       alpha,
       minLength: minLength(4),
-      maxLength: maxLength(10),
     },
     country: {
       required,
@@ -166,7 +168,7 @@ export default {
     Phone: {
       required,
       numeric,
-      maxLength: maxLength(10),
+      minLength: maxLength(13),
     },
   },
   computed: {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="navBarstyle">
-      <div class="toppaddingstyle">
+      <div class="toppaddingstyle flexContent">
         <label class="navBarLabelCount">1</label>
         <label class="navBarLabel">Personal Details</label>
         <label class="navBarLabelCount">2</label>
@@ -145,8 +145,6 @@ export default {
   margin-top: 30px;
   text-align: left;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
   font-size: 15px;
   margin-left: 1.8rem;
   /* identical to box height */
@@ -164,8 +162,6 @@ export default {
   left: 24.6rem;
   margin-top: 1.87rem;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
   font-size: 0.8125rem;
   text-align: center;
   color: rgba(10, 9, 9, 0.6);
@@ -173,8 +169,6 @@ export default {
 .headTag6 {
   left: 24.6rem;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
    font-size: 0.8125rem;
   text-align: center;
   color: #ed5901;
@@ -184,8 +178,6 @@ export default {
   left: 24.6rem;
   margin-top: 3.75rem;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
   font-size: 0.8125rem;
   text-align: center;
   color: rgba(10, 9, 9, 0.8);
@@ -193,8 +185,6 @@ export default {
 
 .headTag3 {
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
   font-size: 0.8125rem;
   text-align: center;
   color: rgba(10, 9, 9, 0.8);
@@ -226,7 +216,6 @@ export default {
   right: 0px;
   top:3.75rem;
   background: #f1f1f1;
-  mix-blend-mode: normal;
 }
 .content {
   position: absolute;

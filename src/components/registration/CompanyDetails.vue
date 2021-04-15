@@ -1,6 +1,6 @@
 <template>
   <form class="navBarstyle" @submit.prevent="submit">
-    <div class="toppaddingstyle">
+    <div class="toppaddingstyle flexContent">
       <label class="navBarLabelCount">1</label>
       <label class="navBarLabel">Personal Details</label>
       <label class="navBarLabelCountPersonal">2</label>
@@ -354,8 +354,6 @@ input[type="checkbox"] {
   margin-left: 1rem;
   top: 1.87rem;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
   font-size: 15px;
   color: #ed5901;
 }
@@ -366,8 +364,6 @@ input[type="checkbox"] {
 }
 .loginContentText {
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
   font-size: 1rem;
   margin-top: 0.2rem;
   margin-left: 0.6rem;
@@ -378,9 +374,7 @@ input[type="checkbox"] {
 }
 .login {
   font-family: Lato;
-  font-style: normal;
   margin-top: 0.2rem;
-  font-weight: normal;
   font-size: 1rem;
   color: #ed5901;
   margin-left: 5px;
@@ -395,8 +389,6 @@ input[type="checkbox"] {
   left: 24.6rem;
   margin-top: 3.75rem;
   font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
   font-size: 1rem;
   text-align: center;
   color: rgba(10, 9, 9, 0.8);

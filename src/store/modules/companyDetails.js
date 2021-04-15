@@ -4,48 +4,48 @@ export default {
     companyname: '',
     emailId: '',
     jobtitle: '',
-    exp: 0,
+    exp: '',
   },
   getters: {
-    companynameGetters(state) {
+    companynameGetters: (state) => {
       return state.companyname;
     },
-    emailIdGetters(state) {
+    emailIdGetters: (state) => {
       return state.emailId;
     },
-    jobtitleGetters(state) {
+    jobtitleGetters: (state) => {
       return state.jobtitle;
     },
-    expGetters(state) {
+    expGetters: (state) => {
       return state.exp;
     },
   },
   mutations: {
-    companynameMutation(state, companyname) {
+    companynameMutation: (state, companyname) => {
       state.companyname = companyname;
     },
-    emailIdMutation(state, emailId) {
+    emailIdMutation: (state, emailId) => {
       state.emailId = emailId;
     },
-    jobtitleMutation(state, jobtitle) {
+    jobtitleMutation: (state, jobtitle) => {
       state.jobtitle = jobtitle;
     },
-    expMutation(state, exp) {
+    expMutation: (state, exp) => {
       state.exp = exp;
     },
   },
   actions: {
-    companyName(context, companyname) {
-      context.commit('companynameMutation', companyname);
+    companyName: ({ commit }, companyname) => {
+      commit('companynameMutation', companyname);
     },
-    emailID(context, emailId) {
-      context.commit('emailIdMutation', emailId);
+    emailID: ({ commit }, emailId) => {
+      commit('emailIdMutation', emailId);
     },
-    jobTitle(context, jobtitle) {
-      context.commit('jobtitleMutation', jobtitle);
+    jobTitle: ({ commit }, jobtitle) => {
+      commit('jobtitleMutation', jobtitle);
     },
-    experrience(context, exp) {
-      context.commit('expMutation', exp);
+    experrience: ({ commit }, exp) => {
+      commit('expMutation', exp);
     },
   },
 };

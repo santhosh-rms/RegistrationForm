@@ -1,68 +1,73 @@
 
 .myTabClass {
   position: absolute;
-  width: 1280px;
-  height: 790px;
+  width: 80rem;
+  height: 49.3rem;
   left: 0px;
   right: 0px;
-  top: 80px;
+  top: 5rem;
   background: #f1f1f1;
   mix-blend-mode: normal;
 }
 .buttonStyle {
   color: #ffffff;
-  height: 45px;
-  width: 450px;
+  height: 2.812rem;
+  width: 28.12rem;
   font-family: Lato;
-  margin-top: 25px;
+  margin-top: 1.75rem;
   background: #ed5901;
 }
+.buttonLabelStyle{
+  color: #ffffff;
+  font-family: Lato;
+  
+}
 .textInpuBox {
-  height: 40px;
-  width: 448px;
-  border-radius: 3px;
-  margin-bottom: 9;
+  height:2.5rem;
+  width:28rem;
+  border-radius: 0.187rem;
+  margin-bottom:0.562rem;
 }
 .buttonStyleGlobal{
   font-family: Lato;
   bottom: 1rem;
 }
 .titleTag-C {
-  margin-bottom: 9px;
-  margin-top: 30px;
+  margin-bottom: 0.562rem;
+  margin-top: 1.87rem;
   text-align: left;
   font-family: Lato;
-  font-size: 15px;
+  font-size: 0.9375rem;
   margin-left: 0ch;
   /* identical to box height */
   color: rgba(10, 9, 9, 0.6);
 }
 .headTag {
   position: absolute;
-  width: 425px;
-  height: 43px;
-  left: 438px;
+  width: 26.5625rem;
+  height: 2.6875rem;
+  left: 27.375rem;
 
   font-family: Lato;
   font-weight: bold;
-  font-size: 36px;
+  font-size:2.25rem;
   text-align: center;
-  border-width: 1px;
+  border-width: 0.0625rem;
   color: #0a0909;
 }
 .myTabClass-c {
   position: absolute;
-  width: 1280px;
-  height: 900px;
+  width: 80rem;
+  height:56.25rem;
   left: 0px;
   right: 0px;
-  top: 90px;
+  top: 5.625rem;
   background: #f1f1f1;
 }
 .errorStyle {
     color: #ED5901;
     margin-top: 0.5rem;
-    font-size: 12px;
+    font-size: 0.75rem;
     text-align: start;
     font-family: Lato;
 }
@@ -70,7 +75,7 @@
     color: #ED5901;
     margin-top: 0.2rem;
     text-align: start;
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 .error-content {
 justify-content: flex-start;
@@ -85,11 +90,13 @@ top: 10rem;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 60px;
+    height: 3.75rem;
     padding-bottom: 1.3rem;
   }
   .toppaddingstyle {
-    padding-top: 15px;
+    padding-top: 0.9375rem;
+  }
+  .flexContent {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,55 +104,49 @@ top: 10rem;
   .navBarLabelCount {
     color: rgba(255, 255, 255, 0.7);
     font-family: Lato;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    height: 30px;
+    font-size: 1rem;
+    height: 1.875rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    border-radius: 15px;
+    width: 1.875rem;
+    padding-bottom: 0.1875rem;
+    border-radius: 0.9375rem;
     background-color: #28435a;
   }
   .navBarLabelActive {
     color: #FFFFFF;
     font-family: Lato;
-    font-style: normal;
-    font-weight: normal;
-    margin-right: 110px;
-    font-size: 15px;
+    margin-right: 6.875rem;
+    font-size: 0.9375rem;
     margin-left: 10px;
   }
   .navBarLabelCountPersonal {
     color: #ffffff;
     font-family: Lato;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    height: 30px;
+    font-size: 1rem;
+    height: 1.875rem;
     display: flex;
     align-items: center;
+    padding-bottom: 4px;
     justify-content: center;
-    width: 30px;
-    border-radius: 15px;
+    width: 1.875rem;
+    border-radius: 0.9375rem;
     background-color: #ed5901;
   }
   .navBarLabel {
     color: rgba(255, 255, 255, 0.7);
     font-family: Lato;
-    font-style: normal;
-    font-weight: normal;
-    margin-right: 110px;
-    font-size: 15px;
-    margin-left: 10px;
+    margin-right: 6.875rem;
+    font-size:  0.9375rem;
+    margin-left:0.625rem;
   }
   .navBarTrack {
-    height: 30px;
+    height: 1.875rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    border-radius: 15px;
+    width: 1.875rem;
+    border-radius: 0.9375rem;
     background-color: #28435a;
   }

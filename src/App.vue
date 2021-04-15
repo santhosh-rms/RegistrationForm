@@ -1,33 +1,12 @@
 <template>
   <div id="app">
- 
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <!-- <PersonalDetails
-      msg="Add your personal details"
-      head="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-    /> -->
-    <!-- <CompanyDetails/> -->
-    <!-- <OtpVerify /> -->
-    <!-- <div id='nav'>
-      <router-link to="/">PersonalDetails</router-link>
-      <router-link to="/companydetails">CompanyDetails</router-link>
-       <router-link to="/otpverify">otpverify</router-link>
-    </div> -->
     <router-view/>
   </div>
 </template>
 
 <script>
-// import PersonalDetails from "./components/registration/PersonalDetails";
-// import CompanyDetails from "./components/registration/CompanyDetails";
-// import OtpVerify from "./components/registration/OtpVerify";
 export default {
   name: "App",
-  components: {
-    // PersonalDetails,
-    // CompanyDetails
-    // OtpVerify,
-  },
 };
 </script>
 

@@ -17,7 +17,7 @@
 
     <div class="myTabClass-c">
       <h1 class="headTag">Add your company details</h1>
-      <h1>This is User {{$route.query.name}}</h1>
+      <!-- <h1>This is User {{$route.query.name}}</h1> -->
       <h4 class="headTag2">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry.
@@ -225,7 +225,6 @@ export default {
     ]),
   },
   created: function () {
-     alert(this.$route.query.name);
     this.companyname = this.companynameGetters;
     this.emailId = this.emailIdGetters;
     this.jobtitle = this.jobtitleGetters;

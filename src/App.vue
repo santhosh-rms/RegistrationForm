@@ -1,19 +1,12 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <PersonalDetails msg="Add your personal details" head="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+    <router-view/>
   </div>
 </template>
 
 <script>
-import PersonalDetails from "./components/registration/PersonalDetails";
-// import CompanyDetails from "./components/registration/CompanyDetails";
 export default {
   name: "App",
-  components: {
-    PersonalDetails,
-    // CompanyDetails
-  },
 };
 </script>
 
@@ -27,9 +20,9 @@ export default {
   background: #f1f1f1;
   mix-blend-mode: normal;
 }
+
 @font-face {
   font-family: "Lato";
-  src: local("Lato"),
-   url(./fonts/Lato/Lato-Bold.ttf) format("truetype");
+  src: local("Lato"), url(./fonts/Lato/Lato-Bold.ttf) format("truetype");
 }
 </style>
